@@ -1,0 +1,79 @@
+	<div class="container mt-5" id="color">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>Ranglar</h1>
+            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createColor">
+                <i class="fa fa-plus"></i> Rang qo'shish
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="createColor" tabindex="-1" aria-labelledby="customModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="customModalLabel">Rang qo'shish</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{% url 'create_color' %}" method="post">
+
+                        {% csrf_token %}
+
+                        <div class="modal-body">
+                            <label for="brandName" class="form-label">Rang nomini kiriting:</label>
+                            {{ color_form.name }}
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Saqlash</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4 g-3">
+
+            {% for color in colors %}
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h4 class="card-title text-center">{{ color.name }}</h4>
+                            <hr>
+                            <div class="d-flex justify-content-evenly">
+                                <button type="button" class="btn btn-success" data-mdb-ripple-init data-bs-toggle="modal" data-bs-target="#updateColor{{ color.id }}">Tahrirlash</button>
+                                <a href="{% url 'delete_color' color.id %}" type="button" class="btn btn-danger" data-mdb-ripple-init>O'chirish</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Modal -->
+                <div class="modal fade" id="updateColor{{ color.id }}" tabindex="-1" aria-labelledby="customModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="customModalLabel">Rang tahrirlash</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="{% url 'update_color' color.id %}" method="post">
+                                {% csrf_token %}
+            
+                                <div class="modal-body">
+                                    <label for="brandColor{{ color.id }}" class="form-label">Rang nomini tahrirlang:</label>
+                                    <input type="text" id="brandColor{{ color.id }}" name="name" class="form-control" value="{{ color.name }}">
+                                </div>
+            
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Saqlash</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        
+        </div>
+    </div>

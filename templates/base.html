@@ -1,0 +1,248 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{ title }}</title>
+        
+        <!-- Bootstrap -->
+        <link 
+                href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+                rel="stylesheet"
+        >
+        
+        <!-- Font Awesome -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+                rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+                href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+                rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+                href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css"
+                rel="stylesheet"
+        />
+    </head>
+<body>
+
+<!-- Navbar -->
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+            <!-- Container wrapper -->
+            <div class="container">
+                <!-- Toggle button -->
+                <button
+                    data-mdb-collapse-init
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Navbar brand -->
+                    <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                        <img
+                            src="{% static 'da.jpg' %}"
+                            height="50"
+                            alt="MDB Logo"
+                            loading="lazy"
+                            style="border-radius: 50%"
+                        />
+                    </a>
+                    <!-- Left links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard' %}">Bosh sahifa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard' %}#brand">Brendlar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard' %}#color">Ranglar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard' %}#car">Mashinalar</a>
+                        </li>
+                    </ul>
+                    <!-- Left links -->
+                </div>
+                <!-- Collapsible wrapper -->
+
+                <!-- Right elements -->
+                <div class="d-flex align-items-center">
+                    <!-- Avatar -->
+                    <div class="dropdown">
+                        <a
+                            data-mdb-dropdown-init
+                            class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                            href="#"
+                            id="navbarDropdownMenuAvatar"
+                            role="button"
+                            aria-expanded="false"
+                        >
+                            <img
+                                src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+                                class="rounded-circle"
+                                height="45"
+                                alt="Black and White Portrait of a Man"
+                                loading="lazy"
+                            />
+                        </a>
+                        <ul
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuAvatar"
+                        >
+                            <li>
+                                <a class="dropdown-item" href="#">My profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Settings</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Right elements -->
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+        
+        {% if request.path == '/' %}
+         <!-- Background image -->
+        <div
+            class="p-5 text-center bg-image container"
+            style="
+          background-image: url('https://cdn.motor1.com/images/mgl/MkO9NN/s3/future-supercars.jpg');
+          height: 600px;
+          margin-top: 5px;
+          border-radius: 10px 10px 20px 20px;
+        "
+        >
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="text-white">
+                        <h1 class="mb-3">Super narxlarda</h1>
+                        <h4 class="mb-3">Bizda eng so'nggi rusmdagi avtomobillar</h4>
+                        <a data-mdb-ripple-init class="btn btn-outline-primary btn-lg" target="_blank" href="https://t.me/asatullayev0509" role="button"
+                        >Biz bilan bog'lanish</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Background image -->       	
+        {% endif %} 
+
+    </header>
+
+    {% block content %}
+    	
+    {% endblock %}
+
+
+    {% if messages %}
+    	{% include 'messages.html' %}
+    {% endif %} 
+
+    <footer class="mt-5 text-center bg-body-tertiary">
+        <!-- Grid container -->
+        <div class="container pt-4">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a
+                    data-mdb-ripple-init
+                    class="btn btn-link btn-floating btn-lg text-body m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                ><i class="fab fa-facebook-f"></i
+                ></a>
+
+                <!-- Twitter -->
+                <a
+                    data-mdb-ripple-init
+                    class="btn btn-link btn-floating btn-lg text-body m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                ><i class="fab fa-twitter"></i
+                ></a>
+
+                <!-- Google -->
+                <a
+                    data-mdb-ripple-init
+                    class="btn btn-link btn-floating btn-lg text-body m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                ><i class="fab fa-google"></i
+                ></a>
+
+                <!-- Instagram -->
+                <a
+                    data-mdb-ripple-init
+                    class="btn btn-link btn-floating btn-lg text-body m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                ><i class="fab fa-instagram"></i
+                ></a>
+
+                <!-- Linkedin -->
+                <a
+                    data-mdb-ripple-init
+                    class="btn btn-link btn-floating btn-lg text-body m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                ><i class="fab fa-linkedin"></i
+                ></a>
+                <!-- Github -->
+                <a
+                    data-mdb-ripple-init
+                    class="btn btn-link btn-floating btn-lg text-body m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                ><i class="fab fa-github"></i
+                ></a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2024 Copyright:
+            <a class="text-body" href="https://asatullayev.uz/" target="_blank">asatullayev.uz</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+<!-- MDB -->
+<script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"
+></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
